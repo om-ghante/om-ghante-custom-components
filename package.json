@@ -1,22 +1,33 @@
 {
   "name": "om-ghante-custom-components",
   "version": "1.0.0",
-  "description": "An npm package for custom-components",
-  "main": "index.js",
+  "description": "A collection of reusable React components including buttons, inputs, and others.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "npm run test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/om-ghante/om-ghante-custom-components.git"
+    "build": "babel src --out-dir dist --copy-files",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "npm"
+    "react",
+    "components",
+    "buttons",
+    "inputs",
+    "ui"
   ],
   "author": "Om Ghante",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/om-ghante/om-ghante-custom-components/issues"
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
   },
-  "homepage": "https://github.com/om-ghante/om-ghante-custom-components#readme"
+  "devDependencies": {
+    "@babel/cli": "^7.28.0",
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1"
+  }
 }
