@@ -1,0 +1,22 @@
+{
+  "name": "om-ghante-custom-components",
+  "version": "1.0.0",
+  "description": "An npm package for custom-components",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/om-ghante/om-ghante-custom-components.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Om Ghante",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/om-ghante/om-ghante-custom-components/issues"
+  },
+  "homepage": "https://github.com/om-ghante/om-ghante-custom-components#readme"
+}
