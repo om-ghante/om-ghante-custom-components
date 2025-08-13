@@ -1,35 +1,90 @@
 import React from "react";
 
-const CustomModal = ({ isOpen, onClose, title, children, footer }) => {
+const CustomModal = ({ isOpen, onClose, title, children, footer, className = "", style = {} }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div
+      className={className}
+      style={{
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 50,
+        ...style
+      }}
+    >
       {/* Overlay */}
       <div
-        className="absolute inset-0 bg-black opacity-50"
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          backgroundColor: '#000000',
+          opacity: 0.5
+        }}
         onClick={onClose}
       ></div>
 
       {/* Modal */}
-      <div className="relative bg-white rounded-lg shadow-lg max-w-lg w-full z-10 p-6">
+      <div
+        style={{
+          position: 'relative',
+          backgroundColor: '#ffffff',
+          borderRadius: '0.5rem',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          maxWidth: '32rem',
+          width: '100%',
+          zIndex: 10,
+          padding: '1.5rem'
+        }}
+      >
         {/* Header */}
-        <div className="flex justify-between items-center border-b pb-2">
-          <h2 className="text-xl font-semibold">{title}</h2>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderBottom: '1px solid #e5e7eb', // Using a light gray color
+            paddingBottom: '0.5rem'
+          }}
+        >
+          <h2 style={{ fontSize: '1.25rem', fontWeight: '600' }}>{title}</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-800 text-xl font-bold"
+            style={{
+              color: '#6b7280',
+              fontSize: '1.25rem',
+              fontWeight: '700',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer'
+            }}
           >
             &times;
           </button>
         </div>
 
         {/* Body */}
-        <div className="mt-4">{children}</div>
+        <div style={{ marginTop: '1rem' }}>{children}</div>
 
         {/* Footer */}
         {footer && (
-          <div className="mt-6 flex justify-end gap-3">{footer}</div>
+          <div
+            style={{
+              marginTop: '1.5rem',
+              display: 'flex',
+              justifyContent: 'flex-end',
+              gap: '0.75rem'
+            }}
+          >{footer}</div>
         )}
       </div>
     </div>

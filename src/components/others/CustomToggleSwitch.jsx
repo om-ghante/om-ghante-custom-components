@@ -5,6 +5,7 @@ const CustomToggleSwitch = ({
   onToggle,
   label = "",
   className = "",
+  style = {},
 }) => {
   const [isChecked, setIsChecked] = useState(checked);
 
@@ -15,29 +16,42 @@ const CustomToggleSwitch = ({
   };
 
   return (
-    <label className={`flex items-center cursor-pointer ${className}`}>
+    <label className={className} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', ...style }}>
       {/* Toggle Switch */}
-      <div className="relative">
+      <div style={{ position: 'relative' }}>
         <input
           type="checkbox"
           checked={isChecked}
           onChange={handleChange}
-          className="sr-only"
+          style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}
         />
         <div
-          className={`block w-12 h-6 rounded-full transition-colors ${
-            isChecked ? "bg-blue-600" : "bg-gray-300"
-          }`}
+          style={{
+            display: 'block',
+            width: '3rem',
+            height: '1.5rem',
+            borderRadius: '9999px',
+            transition: 'background-color 0.15s ease-in-out',
+            backgroundColor: isChecked ? '#2563eb' : '#d1d5db'
+          }}
         ></div>
         <div
-          className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${
-            isChecked ? "translate-x-6" : ""
-          }`}
+          style={{
+            position: 'absolute',
+            left: '0.25rem',
+            top: '0.25rem',
+            backgroundColor: '#ffffff',
+            width: '1rem',
+            height: '1rem',
+            borderRadius: '9999px',
+            transition: 'transform 0.15s ease-in-out',
+            transform: isChecked ? 'translateX(1.5rem)' : 'translateX(0)'
+          }}
         ></div>
       </div>
 
       {/* Label */}
-      {label && <span className="ml-3 text-gray-700">{label}</span>}
+      {label && <span style={{ marginLeft: '0.75rem', color: '#374151' }}>{label}</span>}
     </label>
   );
 };

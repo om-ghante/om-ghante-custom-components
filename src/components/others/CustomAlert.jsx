@@ -4,28 +4,28 @@ import { FaTimesCircle, FaCheckCircle, FaInfoCircle, FaExclamationTriangle } fro
 
 const VARIANT_STYLES = {
   success: {
-    bg: "bg-green-50",
-    text: "text-green-800",
-    border: "border-green-200",
-    icon: <FaCheckCircle className="w-5 h-5 text-green-600" />
+    backgroundColor: "#f0fdf4", // bg-green-50
+    color: "#166534", // text-green-800
+    borderColor: "#bbf7d0", // border-green-200
+    icon: <FaCheckCircle style={{ width: '1.25rem', height: '1.25rem', color: '#22c55e' }} /> // text-green-600
   },
   error: {
-    bg: "bg-red-50",
-    text: "text-red-800",
-    border: "border-red-200",
-    icon: <FaTimesCircle className="w-5 h-5 text-red-600" />
+    backgroundColor: "#fef2f2", // bg-red-50
+    color: "#991b1b", // text-red-800
+    borderColor: "#fecaca", // border-red-200
+    icon: <FaTimesCircle style={{ width: '1.25rem', height: '1.25rem', color: '#ef4444' }} /> // text-red-600
   },
   warning: {
-    bg: "bg-yellow-50",
-    text: "text-yellow-800",
-    border: "border-yellow-200",
-    icon: <FaExclamationTriangle className="w-5 h-5 text-yellow-600" />
+    backgroundColor: "#fffbeb", // bg-yellow-50
+    color: "#92400e", // text-yellow-800
+    borderColor: "#fde68a", // border-yellow-200
+    icon: <FaExclamationTriangle style={{ width: '1.25rem', height: '1.25rem', color: '#eab308' }} /> // text-yellow-600
   },
   info: {
-    bg: "bg-blue-50",
-    text: "text-blue-800",
-    border: "border-blue-200",
-    icon: <FaInfoCircle className="w-5 h-5 text-blue-600" />
+    backgroundColor: "#eff6ff", // bg-blue-50
+    color: "#1e40af", // text-blue-800
+    borderColor: "#bfdbfe", // border-blue-200
+    icon: <FaInfoCircle style={{ width: '1.25rem', height: '1.25rem', color: '#3b82f6' }} /> // text-blue-600
   },
 };
 
@@ -36,6 +36,7 @@ const CustomAlert = ({
   show = true,
   onClose,
   className = "",
+  style = {},
 }) => {
   if (!show) return null;
 
@@ -43,22 +44,40 @@ const CustomAlert = ({
 
   return (
     <div
-      className={`flex items-start gap-3 p-4 border rounded-lg ${styles.bg} ${styles.text} ${styles.border} ${className}`}
+      className={className}
+      style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '0.75rem',
+        padding: '1rem',
+        border: '1px solid',
+        borderRadius: '0.5rem',
+        backgroundColor: styles.backgroundColor,
+        color: styles.color,
+        borderColor: styles.borderColor,
+        ...style
+      }}
     >
       {/* Icon */}
-      <div className="flex-shrink-0">{styles.icon}</div>
+      <div style={{ flexShrink: 0 }}>{styles.icon}</div>
 
       {/* Text Content */}
-      <div className="flex-1">
-        {title && <h4 className="font-semibold">{title}</h4>}
-        {message && <p className="text-sm">{message}</p>}
+      <div style={{ flex: '1 1 0%' }}>
+        {title && <h4 style={{ fontWeight: '600' }}>{title}</h4>}
+        {message && <p style={{ fontSize: '0.875rem' }}>{message}</p>}
       </div>
 
       {/* Close Button */}
       {onClose && (
         <button
           onClick={onClose}
-          className="text-gray-400 hover:text-gray-600 transition-colors"
+          style={{
+            color: '#9ca3af',
+            transition: 'color 0.15s ease-in-out',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer'
+          }}
         >
           ✕
         </button>

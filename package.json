@@ -1,6 +1,6 @@
 {
   "name": "om-ghante-custom-components",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A collection of reusable React components including buttons, inputs, and others.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -8,8 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build:css": "tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css --minify",
-    "build": "npm run build:css && babel src --out-dir dist --copy-files",
+    "build": "babel src --out-dir dist --copy-files",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -29,9 +28,6 @@
     "@babel/cli": "^7.28.0",
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
-    "@babel/preset-react": "^7.27.1",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.13"
+    "@babel/preset-react": "^7.27.1"
   }
 }

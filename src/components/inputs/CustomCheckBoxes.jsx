@@ -6,16 +6,10 @@ const CustomCheckBoxes = ({
   onChange,
   direction = 'vertical', // 'vertical' or 'horizontal'
   disabled = false,
-  variant = 'primary', // 'primary', 'secondary', 'danger', etc.
   className = '',
+  style = {},
 }) => {
   const [selectedValues, setSelectedValues] = useState([]);
-
-  const VARIANT_CLASSES = {
-    primary: 'text-blue-600 focus:ring-blue-500',
-    secondary: 'text-gray-600 focus:ring-gray-500',
-    danger: 'text-red-600 focus:ring-red-500',
-  };
 
   const handleCheckboxChange = (value) => {
     if (disabled) return;
@@ -32,22 +26,40 @@ const CustomCheckBoxes = ({
 
   return (
     <div
-      className={`flex ${
-        direction === 'horizontal' ? 'flex-row gap-4' : 'flex-col gap-2'
-      } ${className}`}
+      className={className}
+      style={{
+        display: 'flex',
+        flexDirection: direction === 'horizontal' ? 'row' : 'column',
+        gap: direction === 'horizontal' ? '1rem' : '0.5rem',
+        ...style
+      }}
     >
       {options.map((option, idx) => (
         <label
           key={idx}
-          className={`flex items-center gap-2 cursor-pointer ${
-            disabled ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            cursor: disabled ? 'not-allowed' : 'pointer',
+            opacity: disabled ? 0.5 : 1
+          }}
         >
           <input
             type="checkbox"
-            className={`h-4 w-4 rounded border-gray-300 focus:ring-2 ${
-              VARIANT_CLASSES[variant]
-            }`}
+            style={{
+              height: '1rem',
+              width: '1rem',
+              borderRadius: '0.25rem',
+              border: '1px solid',
+              borderColor: '#d1d5db',
+              outline: 'none',
+              backgroundColor: selectedValues.includes(option.value) ? '#2563eb' : 'transparent',
+              cursor: 'pointer',
+              // For the checkmark, it's complex with inline styles.
+              // A common approach is to use a background image or a pseudo-element.
+              // For simplicity, I'll just change the background color.
+            }}
             checked={selectedValues.includes(option.value)}
             onChange={() => handleCheckboxChange(option.value)}
             disabled={disabled}

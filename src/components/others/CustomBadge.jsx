@@ -13,23 +13,22 @@ import PropTypes from "prop-types";
  */
 const CustomBadge = ({
   label,
-  color = "bg-blue-500",
-  textColor = "text-white",
-  size = "md",
-  rounded = true,
   className = "",
+  style = {},
 }) => {
-  const sizeClasses = {
-    sm: "text-xs px-2 py-0.5",
-    md: "text-sm px-3 py-1",
-    lg: "text-base px-4 py-1.5",
-  };
-
   return (
     <span
-      className={`${color} ${textColor} ${sizeClasses[size]} ${
-        rounded ? "rounded-full" : "rounded"
-      } font-medium inline-block ${className}`}
+      className={className}
+      style={{
+        backgroundColor: '#3b82f6',
+        color: '#ffffff',
+        fontSize: '0.875rem',
+        padding: '0.25rem 0.75rem',
+        borderRadius: '9999px',
+        fontWeight: '500',
+        display: 'inline-block',
+        ...style
+      }}
     >
       {label}
     </span>
@@ -38,11 +37,8 @@ const CustomBadge = ({
 
 CustomBadge.propTypes = {
   label: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  textColor: PropTypes.string,
-  size: PropTypes.oneOf(["sm", "md", "lg"]),
-  rounded: PropTypes.bool,
   className: PropTypes.string,
+  style: PropTypes.object,
 };
 
 export default CustomBadge;

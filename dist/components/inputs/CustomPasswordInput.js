@@ -8,6 +8,11 @@ exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _fa = require("react-icons/fa");
 function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, "default": e }; if (null === e || "object" != _typeof(e) && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -29,7 +34,9 @@ var CustomPasswordInput = function CustomPasswordInput(_ref) {
     className = _ref$className === void 0 ? '' : _ref$className,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    onChange = _ref.onChange;
+    onChange = _ref.onChange,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? {} : _ref$style;
   var _useState = (0, _react.useState)(''),
     _useState2 = _slicedToArray(_useState, 2),
     value = _useState2[0],
@@ -45,11 +52,23 @@ var CustomPasswordInput = function CustomPasswordInput(_ref) {
     }
   };
   return /*#__PURE__*/_react["default"].createElement("div", {
-    className: "flex flex-col gap-1 ".concat(fullWidth ? 'w-full' : 'w-fit', " ").concat(className)
+    className: className,
+    style: _objectSpread({
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.25rem',
+      width: fullWidth ? '100%' : 'fit-content'
+    }, style)
   }, label && /*#__PURE__*/_react["default"].createElement("label", {
-    className: "text-sm font-medium text-gray-700"
+    style: {
+      fontSize: '0.875rem',
+      fontWeight: '500',
+      color: '#374151'
+    }
   }, label), /*#__PURE__*/_react["default"].createElement("div", {
-    className: "relative"
+    style: {
+      position: 'relative'
+    }
   }, /*#__PURE__*/_react["default"].createElement("input", {
     type: showPassword ? 'text' : 'password',
     name: name,
@@ -57,16 +76,41 @@ var CustomPasswordInput = function CustomPasswordInput(_ref) {
     value: value,
     onChange: handleChange,
     disabled: disabled,
-    className: "px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500 pr-10 w-full\n            ".concat(error ? 'border-red-500' : 'border-gray-300', " \n            ").concat(disabled ? 'bg-gray-100 cursor-not-allowed' : '', "\n          ")
+    style: {
+      paddingLeft: '0.75rem',
+      paddingRight: '2.5rem',
+      // pr-10
+      paddingTop: '0.5rem',
+      paddingBottom: '0.5rem',
+      border: '1px solid',
+      borderRadius: '0.5rem',
+      outline: 'none',
+      width: '100%',
+      borderColor: error ? '#ef4444' : '#d1d5db',
+      backgroundColor: disabled ? '#f3f4f6' : 'transparent',
+      cursor: disabled ? 'not-allowed' : 'auto'
+    }
   }), /*#__PURE__*/_react["default"].createElement("button", {
     type: "button",
-    className: "absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700",
+    style: {
+      position: 'absolute',
+      right: '0.75rem',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      color: '#6b7280',
+      background: 'none',
+      border: 'none',
+      cursor: 'pointer'
+    },
     onClick: function onClick() {
       return setShowPassword(!showPassword);
     },
     disabled: disabled
   }, showPassword ? /*#__PURE__*/_react["default"].createElement(_fa.FaEyeSlash, null) : /*#__PURE__*/_react["default"].createElement(_fa.FaEye, null))), error && /*#__PURE__*/_react["default"].createElement("p", {
-    className: "text-xs text-red-500"
+    style: {
+      fontSize: '0.75rem',
+      color: '#ef4444'
+    }
   }, error));
 };
 var _default = exports["default"] = CustomPasswordInput;

@@ -10,6 +10,8 @@ const CustomTimePicker = ({
   onChange,
   placeholder = "hh:mm AM/PM",
   error,
+  className = "",
+  style = {},
 }) => {
   const [isTimePickerOpen, setTimePickerOpen] = useState(false);
 
@@ -20,16 +22,27 @@ const CustomTimePicker = ({
   };
 
   // Custom input for TimePicker
-  const CustomInput = forwardRef(({ value, onClick }, ref) => (
+  const CustomInput = forwardRef(({ value, onClick, className, style }, ref) => (
     <div
-      className={`flex items-center w-full px-3 py-2 border rounded-md ${
-        error ? "border-red-500" : "border-gray-300"
-      }`}
+      className={className}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',
+        paddingLeft: '0.75rem',
+        paddingRight: '0.75rem',
+        paddingTop: '0.5rem',
+        paddingBottom: '0.5rem',
+        border: '1px solid',
+        borderRadius: '0.375rem',
+        borderColor: error ? '#ef4444' : '#d1d5db',
+        ...style
+      }}
     >
       {/* Editable input for keyboard navigation */}
       <input
         type="text"
-        className="flex-1 text-gray-700 outline-none bg-transparent"
+        style={{ flex: '1 1 0%', color: '#374151', outline: 'none', backgroundColor: 'transparent' }}
         placeholder={placeholder}
         value={value}
         ref={ref}
@@ -39,7 +52,7 @@ const CustomTimePicker = ({
 
       {/* Clock icon for toggling */}
       <Clock
-        className="h-5 w-5 text-gray-400 cursor-pointer"
+        style={{ height: '1.25rem', width: '1.25rem', color: '#9ca3af', cursor: 'pointer' }}
         onClick={toggleTimePicker}
       />
     </div>
@@ -48,9 +61,9 @@ const CustomTimePicker = ({
   CustomInput.displayName = "CustomTimeInput";
 
   return (
-    <div className="flex flex-col w-full">
+    <div className={className} style={{ display: 'flex', flexDirection: 'column', width: '100%', ...style }}>
       {label && (
-        <label className="mb-1 text-gray-700 font-medium">{label}</label>
+        <label style={{ marginBottom: '0.25rem', color: '#374151', fontWeight: '500' }}>{label}</label>
       )}
 
       <DatePicker
@@ -70,7 +83,7 @@ const CustomTimePicker = ({
         customInput={<CustomInput />}
       />
 
-      {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
+      {error && <span style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>{error}</span>}
     </div>
   );
 };

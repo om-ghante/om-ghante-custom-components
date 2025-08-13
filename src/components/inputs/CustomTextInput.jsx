@@ -10,7 +10,8 @@ const CustomTextInput = ({
   className = '',
   disabled = false,
   type = 'text',
-  onChange
+  onChange,
+  style = {},
 }) => {
   const [value, setValue] = useState('');
 
@@ -22,10 +23,19 @@ const CustomTextInput = ({
   }
 
   return (
-    <div className={`flex flex-col gap-1 ${fullWidth ? 'w-full' : 'w-fit'} ${className}`}>
-      {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
+    <div
+      className={className}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.25rem',
+        width: fullWidth ? '100%' : 'fit-content',
+        ...style
+      }}
+    >
+      {label && <label style={{ fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>{label}</label>}
 
-      <div className="relative">
+      <div style={{ position: 'relative' }}>
         <input
           type={type}
           name={name}
@@ -33,14 +43,23 @@ const CustomTextInput = ({
           value={value}
           onChange={handleChange}
           disabled={disabled}
-          className={`px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500 w-full
-            ${error ? 'border-red-500' : 'border-gray-300'}
-            ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}
-          `}
+          style={{
+            paddingLeft: '0.75rem',
+            paddingRight: '0.75rem',
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem',
+            border: '1px solid',
+            borderRadius: '0.5rem',
+            outline: 'none',
+            width: '100%',
+            borderColor: error ? '#ef4444' : '#d1d5db',
+            backgroundColor: disabled ? '#f3f4f6' : 'transparent',
+            cursor: disabled ? 'not-allowed' : 'auto'
+          }}
         />
       </div>
 
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {error && <p style={{ fontSize: '0.75rem', color: '#ef4444' }}>{error}</p>}
     </div>
   );
 };

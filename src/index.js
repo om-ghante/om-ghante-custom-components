@@ -1,5 +1,4 @@
 // src/index.js
-import "./tailwind.css";
 
 // Buttons
 export { default as CustomIconButton } from "./components/buttons/CustomIconButton";

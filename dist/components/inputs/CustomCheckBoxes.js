@@ -7,6 +7,11 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
 function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, "default": e }; if (null === e || "object" != _typeof(e) && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
@@ -25,19 +30,14 @@ var CustomCheckBoxes = function CustomCheckBoxes(_ref) {
     direction = _ref$direction === void 0 ? 'vertical' : _ref$direction,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    _ref$variant = _ref.variant,
-    variant = _ref$variant === void 0 ? 'primary' : _ref$variant,
     _ref$className = _ref.className,
-    className = _ref$className === void 0 ? '' : _ref$className;
+    className = _ref$className === void 0 ? '' : _ref$className,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? {} : _ref$style;
   var _useState = (0, _react.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     selectedValues = _useState2[0],
     setSelectedValues = _useState2[1];
-  var VARIANT_CLASSES = {
-    primary: 'text-blue-600 focus:ring-blue-500',
-    secondary: 'text-gray-600 focus:ring-gray-500',
-    danger: 'text-red-600 focus:ring-red-500'
-  };
   var handleCheckboxChange = function handleCheckboxChange(value) {
     if (disabled) return;
     var updatedValues = selectedValues.includes(value) ? selectedValues.filter(function (v) {
@@ -49,14 +49,37 @@ var CustomCheckBoxes = function CustomCheckBoxes(_ref) {
     }
   };
   return /*#__PURE__*/_react["default"].createElement("div", {
-    className: "flex ".concat(direction === 'horizontal' ? 'flex-row gap-4' : 'flex-col gap-2', " ").concat(className)
+    className: className,
+    style: _objectSpread({
+      display: 'flex',
+      flexDirection: direction === 'horizontal' ? 'row' : 'column',
+      gap: direction === 'horizontal' ? '1rem' : '0.5rem'
+    }, style)
   }, options.map(function (option, idx) {
     return /*#__PURE__*/_react["default"].createElement("label", {
       key: idx,
-      className: "flex items-center gap-2 cursor-pointer ".concat(disabled ? 'opacity-50 cursor-not-allowed' : '')
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        opacity: disabled ? 0.5 : 1
+      }
     }, /*#__PURE__*/_react["default"].createElement("input", {
       type: "checkbox",
-      className: "h-4 w-4 rounded border-gray-300 focus:ring-2 ".concat(VARIANT_CLASSES[variant]),
+      style: {
+        height: '1rem',
+        width: '1rem',
+        borderRadius: '0.25rem',
+        border: '1px solid',
+        borderColor: '#d1d5db',
+        outline: 'none',
+        backgroundColor: selectedValues.includes(option.value) ? '#2563eb' : 'transparent',
+        cursor: 'pointer'
+        // For the checkmark, it's complex with inline styles.
+        // A common approach is to use a background image or a pseudo-element.
+        // For simplicity, I'll just change the background color.
+      },
       checked: selectedValues.includes(option.value),
       onChange: function onChange() {
         return handleCheckboxChange(option.value);

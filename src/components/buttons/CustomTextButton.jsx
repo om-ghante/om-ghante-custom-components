@@ -18,30 +18,38 @@ const CustomTextButton = ({
   type = 'button',
   text = 'Click me',
   onClick,
-  variant = 'primary',     
-  size = 'md',             
   loading = false,
   disabled = false,
   fullWidth = false,
   className = '',
+  style = {},
 }) => {
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled || loading}
-      className={`
-        rounded-lg font-medium transition-all duration-200 ease-in-out
-        flex items-center justify-center
-        ${VARIANT_CLASSES[variant] || VARIANT_CLASSES.primary}
-        ${SIZE_CLASSES[size] || SIZE_CLASSES.md}
-        ${fullWidth ? 'w-full' : 'w-fit'}
-        ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
-        ${className}
-      `}
+      className={className}
+      style={{
+        borderRadius: '0.5rem',
+        fontWeight: '500',
+        transition: 'all 0.2s ease-in-out',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#2563eb', // Default primary color
+        color: '#ffffff', // Default text color
+        padding: '0.5rem 1rem', // Default md size padding
+        fontSize: '1rem', // Default md size font
+        width: fullWidth ? '100%' : 'fit-content',
+        opacity: disabled || loading ? 0.5 : 1,
+        cursor: disabled || loading ? 'not-allowed' : 'pointer',
+        border: 'none', // Remove default button border
+        ...style
+      }}
     >
       {loading ? (
-        <FaSpinner className="animate-spin w-4 h-4" />
+        <FaSpinner style={{ animation: 'spin 1s linear infinite', width: '1rem', height: '1rem' }} />
       ) : (
         text
       )}

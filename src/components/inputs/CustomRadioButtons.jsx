@@ -8,29 +8,10 @@ const CustomRadioButtons = ({
   onChange,
   label = "",
   direction = "row", // row or column
-  size = "md", // sm, md, lg
-  color = "blue", // Tailwind color name
   disabled = false,
   className = "",
+  style = {},
 }) => {
-  const SIZE_CLASSES = {
-    sm: "w-3 h-3",
-    md: "w-4 h-4",
-    lg: "w-5 h-5",
-  };
-
-  // Predefined Tailwind color classes (so they're not purged)
-  const COLOR_CLASSES = {
-    blue: "checked:bg-blue-600 focus:ring-blue-500",
-    red: "checked:bg-red-600 focus:ring-red-500",
-    green: "checked:bg-green-600 focus:ring-green-500",
-    yellow: "checked:bg-yellow-600 focus:ring-yellow-500",
-    purple: "checked:bg-purple-600 focus:ring-purple-500",
-    pink: "checked:bg-pink-600 focus:ring-pink-500",
-    indigo: "checked:bg-indigo-600 focus:ring-indigo-500",
-    gray: "checked:bg-gray-600 focus:ring-gray-500",
-  };
-
   const handleChange = (value) => {
     if (onChange) {
       onChange(value);
@@ -38,24 +19,38 @@ const CustomRadioButtons = ({
   };
 
   return (
-    <div className={`flex flex-col gap-2 ${className}`}>
+    <div
+      className={className}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.5rem',
+        ...style
+      }}
+    >
       {label && (
-        <span className="font-medium text-gray-700">
+        <span style={{ fontWeight: '500', color: '#374151' }}>
           {label}
         </span>
       )}
 
       <div
-        className={`flex ${
-          direction === "column" ? "flex-col gap-2" : "flex-row gap-4"
-        }`}
+        style={{
+          display: 'flex',
+          flexDirection: direction === 'column' ? 'column' : 'row',
+          gap: direction === 'column' ? '0.5rem' : '1rem'
+        }}
       >
         {options.map((option) => (
           <label
             key={option.value}
-            className={`flex items-center gap-2 cursor-pointer ${
-              disabled ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              cursor: disabled ? 'not-allowed' : 'pointer',
+              opacity: disabled ? 0.5 : 1
+            }}
           >
             <input
               type="radio"
@@ -64,9 +59,21 @@ const CustomRadioButtons = ({
               checked={selectedValue === option.value}
               onChange={() => handleChange(option.value)}
               disabled={disabled}
-              className={`appearance-none rounded-full border border-gray-300 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 ${COLOR_CLASSES[color]} ${SIZE_CLASSES[size]}`}
+              style={{
+                appearance: 'none',
+                borderRadius: '9999px',
+                border: '1px solid',
+                borderColor: selectedValue === option.value ? 'transparent' : '#d1d5db',
+                outline: 'none',
+                width: '1rem', // Default size (md)
+                height: '1rem', // Default size (md)
+                backgroundColor: selectedValue === option.value ? '#2563eb' : 'transparent',
+                position: 'relative',
+                display: 'inline-block',
+                flexShrink: 0,
+              }}
             />
-            <span className="text-black">{option.label}</span>
+            <span style={{ color: '#000000' }}>{option.label}</span>
           </label>
         ))}
       </div>

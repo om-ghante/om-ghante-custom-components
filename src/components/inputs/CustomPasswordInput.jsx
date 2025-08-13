@@ -10,7 +10,8 @@ const CustomPasswordInput = ({
   fullWidth = false,
   className = '',
   disabled = false,
-  onChange
+  onChange,
+  style = {},
 }) => {
   const [value, setValue] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -23,10 +24,19 @@ const CustomPasswordInput = ({
   }
 
   return (
-    <div className={`flex flex-col gap-1 ${fullWidth ? 'w-full' : 'w-fit'} ${className}`}>
-      {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
+    <div
+      className={className}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.25rem',
+        width: fullWidth ? '100%' : 'fit-content',
+        ...style
+      }}
+    >
+      {label && <label style={{ fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>{label}</label>}
 
-      <div className="relative">
+      <div style={{ position: 'relative' }}>
         <input
           type={showPassword ? 'text' : 'password'}
           name={name}
@@ -34,14 +44,32 @@ const CustomPasswordInput = ({
           value={value}
           onChange={handleChange}
           disabled={disabled}
-          className={`px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500 pr-10 w-full
-            ${error ? 'border-red-500' : 'border-gray-300'} 
-            ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}
-          `}
+          style={{
+            paddingLeft: '0.75rem',
+            paddingRight: '2.5rem', // pr-10
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem',
+            border: '1px solid',
+            borderRadius: '0.5rem',
+            outline: 'none',
+            width: '100%',
+            borderColor: error ? '#ef4444' : '#d1d5db',
+            backgroundColor: disabled ? '#f3f4f6' : 'transparent',
+            cursor: disabled ? 'not-allowed' : 'auto'
+          }}
         />
         <button
           type="button"
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+          style={{
+            position: 'absolute',
+            right: '0.75rem',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            color: '#6b7280',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer'
+          }}
           onClick={() => setShowPassword(!showPassword)}
           disabled={disabled}
         >
@@ -49,7 +77,7 @@ const CustomPasswordInput = ({
         </button>
       </div>
 
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {error && <p style={{ fontSize: '0.75rem', color: '#ef4444' }}>{error}</p>}
     </div>
   );
 };

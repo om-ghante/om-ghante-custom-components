@@ -7,6 +7,7 @@ const CustomSearchBar = ({
   className = "",
   showIcon = true,
   buttonType = "text", // 'text' or 'icon'
+  style = {},
 }) => {
   const [query, setQuery] = useState("");
 
@@ -18,10 +19,19 @@ const CustomSearchBar = ({
   return (
     <form
       onSubmit={handleSearch}
-      className={`flex items-center border border-gray-300 rounded-lg overflow-hidden ${className}`}
+      className={className}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        border: '1px solid',
+        borderColor: '#d1d5db',
+        borderRadius: '0.5rem',
+        overflow: 'hidden',
+        ...style
+      }}
     >
       {showIcon && (
-        <span className="px-3 text-gray-500">
+        <span style={{ paddingLeft: '0.75rem', paddingRight: '0.75rem', color: '#6b7280' }}>
           <FaSearch size={18} />
         </span>
       )}
@@ -30,19 +40,39 @@ const CustomSearchBar = ({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={placeholder}
-        className="flex-1 px-3 py-2 outline-none"
+        style={{ flex: '1 1 0%', paddingLeft: '0.75rem', paddingRight: '0.75rem', paddingTop: '0.5rem', paddingBottom: '0.5rem', outline: 'none' }}
       />
       {buttonType === "text" ? (
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 transition-colors"
+          style={{
+            backgroundColor: '#2563eb',
+            color: '#ffffff',
+            paddingLeft: '1rem',
+            paddingRight: '1rem',
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem',
+            transition: 'background-color 0.15s ease-in-out',
+            border: 'none',
+            cursor: 'pointer'
+          }}
         >
           Search
         </button>
       ) : (
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 transition-colors"
+          style={{
+            backgroundColor: '#2563eb',
+            color: '#ffffff',
+            paddingLeft: '0.75rem',
+            paddingRight: '0.75rem',
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem',
+            transition: 'background-color 0.15s ease-in-out',
+            border: 'none',
+            cursor: 'pointer'
+          }}
         >
           <FaSearch size={18} />
         </button>

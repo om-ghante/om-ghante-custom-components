@@ -13,6 +13,8 @@ const CustomDatePicker = ({
   dateFormat = "dd/MM/yyyy",
   placeholder = "dd/mm/yyyy",
   error,
+  className = "",
+  style = {},
 }) => {
   const [isDatePickerOpen, setDatePickerOpen] = useState(false);
 
@@ -21,17 +23,28 @@ const CustomDatePicker = ({
     setDatePickerOpen((prev) => !prev);
   };
 
-  const CustomInput = forwardRef(({ value, onClick, onChange: handleChange }, ref) => (
+  const CustomInput = forwardRef(({ value, onClick, onChange: handleChange, className, style }, ref) => (
     <div
-      className={`flex items-center w-full px-3 py-2 border rounded-md ${
-        error ? "border-red-500" : "border-gray-300"
-      }`}
+      className={className}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',
+        paddingLeft: '0.75rem',
+        paddingRight: '0.75rem',
+        paddingTop: '0.5rem',
+        paddingBottom: '0.5rem',
+        border: '1px solid',
+        borderRadius: '0.375rem',
+        borderColor: error ? '#ef4444' : '#d1d5db',
+        ...style
+      }}
       ref={ref}
     >
       {/* Editable text input */}
       <input
         type="text"
-        className="flex-1 text-gray-700 outline-none bg-transparent"
+        style={{ flex: '1 1 0%', color: '#374151', outline: 'none', backgroundColor: 'transparent' }}
         placeholder={placeholder}
         value={value}
         onClick={(e) => {
@@ -42,15 +55,15 @@ const CustomDatePicker = ({
       />
 
       {/* Icon toggles manually */}
-      <FaCalendarAlt className="h-5 w-5 text-gray-400 cursor-pointer" onClick={toggleDatePicker} />
+      <FaCalendarAlt style={{ height: '1.25rem', width: '1.25rem', color: '#9ca3af', cursor: 'pointer' }} onClick={toggleDatePicker} />
     </div>
   ));
 
   CustomInput.displayName = "CustomInput";
 
   return (
-    <div className="flex flex-col w-full">
-      {label && <label className="mb-1 text-gray-700 font-medium">{label}</label>}
+    <div className={className} style={{ display: 'flex', flexDirection: 'column', width: '100%', ...style }}>
+      {label && <label style={{ marginBottom: '0.25rem', color: '#374151', fontWeight: '500' }}>{label}</label>}
 
       <DatePicker
         selected={selectedDate}
@@ -67,7 +80,7 @@ const CustomDatePicker = ({
         customInput={<CustomInput />}
       />
 
-      {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
+      {error && <span style={{ color: '#ef4444', fontSize: '0.875rem', marginTop: '0.25rem' }}>{error}</span>}
     </div>
   );
 };

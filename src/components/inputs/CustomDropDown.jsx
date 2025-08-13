@@ -12,29 +12,47 @@ const CustomDropDown = ({
   fullWidth = false,
   error = "",
   className = "",
+  style = {},
 }) => {
   return (
-    <div className={`flex flex-col gap-1 ${fullWidth ? "w-full" : "w-fit"}`}>
+    <div
+      className={className}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.25rem',
+        width: fullWidth ? '100%' : 'fit-content',
+        ...style
+      }}
+    >
       {label && (
-        <label className="text-sm font-medium text-white">
+        <label style={{ fontSize: '0.875rem', fontWeight: '500', color: '#374151' }}>
           {label}
         </label>
       )}
 
-      <div className="relative">
+      <div style={{ position: 'relative' }}>
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className={`
-            appearance-none px-4 py-2 pr-10 rounded-lg border 
-            focus:outline-none focus:ring-2 focus:ring-blue-500 
-            text-sm transition-all
-            ${disabled ? "bg-gray-100 cursor-not-allowed" : "bg-white"} 
-            ${error ? "border-red-500" : "border-gray-300"} 
-            ${fullWidth ? "w-full" : "w-fit"} 
-            ${className}
-          `}
+          className={className}
+          style={{
+            appearance: 'none',
+            paddingLeft: '1rem',
+            paddingRight: '2.5rem', // pr-10
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem',
+            borderRadius: '0.5rem',
+            border: '1px solid',
+            outline: 'none',
+            fontSize: '0.875rem',
+            transition: 'all 0.15s ease-in-out',
+            backgroundColor: disabled ? '#f3f4f6' : '#ffffff',
+            cursor: disabled ? 'not-allowed' : 'pointer',
+            borderColor: error ? '#ef4444' : '#d1d5db',
+            width: fullWidth ? '100%' : 'fit-content',
+          }}
         >
           {placeholder && <option value="">{placeholder}</option>}
           {options.map((opt, index) => (
@@ -45,11 +63,18 @@ const CustomDropDown = ({
         </select>
 
         <FaChevronDown
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+          style={{
+            position: 'absolute',
+            right: '0.75rem',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            color: '#9ca3af',
+            pointerEvents: 'none'
+          }}
         />
       </div>
 
-      {error && <span className="text-xs text-red-500">{error}</span>}
+      {error && <span style={{ fontSize: '0.75rem', color: '#ef4444' }}>{error}</span>}
     </div>
   );
 };

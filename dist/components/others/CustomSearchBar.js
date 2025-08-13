@@ -8,6 +8,11 @@ exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _fa = require("react-icons/fa");
 function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, "default": e }; if (null === e || "object" != _typeof(e) && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -23,7 +28,9 @@ var CustomSearchBar = function CustomSearchBar(_ref) {
     _ref$showIcon = _ref.showIcon,
     showIcon = _ref$showIcon === void 0 ? true : _ref$showIcon,
     _ref$buttonType = _ref.buttonType,
-    buttonType = _ref$buttonType === void 0 ? "text" : _ref$buttonType;
+    buttonType = _ref$buttonType === void 0 ? "text" : _ref$buttonType,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? {} : _ref$style;
   var _useState = (0, _react.useState)(""),
     _useState2 = _slicedToArray(_useState, 2),
     query = _useState2[0],
@@ -34,9 +41,21 @@ var CustomSearchBar = function CustomSearchBar(_ref) {
   };
   return /*#__PURE__*/_react["default"].createElement("form", {
     onSubmit: handleSearch,
-    className: "flex items-center border border-gray-300 rounded-lg overflow-hidden ".concat(className)
+    className: className,
+    style: _objectSpread({
+      display: 'flex',
+      alignItems: 'center',
+      border: '1px solid',
+      borderColor: '#d1d5db',
+      borderRadius: '0.5rem',
+      overflow: 'hidden'
+    }, style)
   }, showIcon && /*#__PURE__*/_react["default"].createElement("span", {
-    className: "px-3 text-gray-500"
+    style: {
+      paddingLeft: '0.75rem',
+      paddingRight: '0.75rem',
+      color: '#6b7280'
+    }
   }, /*#__PURE__*/_react["default"].createElement(_fa.FaSearch, {
     size: 18
   })), /*#__PURE__*/_react["default"].createElement("input", {
@@ -46,13 +65,40 @@ var CustomSearchBar = function CustomSearchBar(_ref) {
       return setQuery(e.target.value);
     },
     placeholder: placeholder,
-    className: "flex-1 px-3 py-2 outline-none"
+    style: {
+      flex: '1 1 0%',
+      paddingLeft: '0.75rem',
+      paddingRight: '0.75rem',
+      paddingTop: '0.5rem',
+      paddingBottom: '0.5rem',
+      outline: 'none'
+    }
   }), buttonType === "text" ? /*#__PURE__*/_react["default"].createElement("button", {
     type: "submit",
-    className: "bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 transition-colors"
+    style: {
+      backgroundColor: '#2563eb',
+      color: '#ffffff',
+      paddingLeft: '1rem',
+      paddingRight: '1rem',
+      paddingTop: '0.5rem',
+      paddingBottom: '0.5rem',
+      transition: 'background-color 0.15s ease-in-out',
+      border: 'none',
+      cursor: 'pointer'
+    }
   }, "Search") : /*#__PURE__*/_react["default"].createElement("button", {
     type: "submit",
-    className: "bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 transition-colors"
+    style: {
+      backgroundColor: '#2563eb',
+      color: '#ffffff',
+      paddingLeft: '0.75rem',
+      paddingRight: '0.75rem',
+      paddingTop: '0.5rem',
+      paddingBottom: '0.5rem',
+      transition: 'background-color 0.15s ease-in-out',
+      border: 'none',
+      cursor: 'pointer'
+    }
   }, /*#__PURE__*/_react["default"].createElement(_fa.FaSearch, {
     size: 18
   })));

@@ -105,7 +105,6 @@ Object.defineProperty(exports, "CustomToggleSwitch", {
     return _CustomToggleSwitch["default"];
   }
 });
-require("./tailwind.css");
 var _CustomIconButton = _interopRequireDefault(require("./components/buttons/CustomIconButton"));
 var _CustomIconTextButton = _interopRequireDefault(require("./components/buttons/CustomIconTextButton"));
 var _CustomTextButton = _interopRequireDefault(require("./components/buttons/CustomTextButton"));
