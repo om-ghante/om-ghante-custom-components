@@ -8,7 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "babel src --out-dir dist --copy-files",
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css --minify",
+    "build": "npm run build:css && babel src --out-dir dist --copy-files",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -28,6 +29,9 @@
     "@babel/cli": "^7.28.0",
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
-    "@babel/preset-react": "^7.27.1"
+    "@babel/preset-react": "^7.27.1",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.13"
   }
 }
