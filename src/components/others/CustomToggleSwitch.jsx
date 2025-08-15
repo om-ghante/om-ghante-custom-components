@@ -17,7 +17,7 @@ const CustomToggleSwitch = ({
 
   return (
     <label className={className} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', ...style }}>
-      {/* Toggle Switch */}
+
       <div style={{ position: 'relative' }}>
         <input
           type="checkbox"
@@ -50,7 +50,6 @@ const CustomToggleSwitch = ({
         ></div>
       </div>
 
-      {/* Label */}
       {label && <span style={{ marginLeft: '0.75rem', color: '#374151' }}>{label}</span>}
     </label>
   );

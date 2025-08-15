@@ -1,4 +1,3 @@
-// components/others/CustomTimePicker.jsx
 import React, { useState, forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,13 +14,11 @@ const CustomTimePicker = ({
 }) => {
   const [isTimePickerOpen, setTimePickerOpen] = useState(false);
 
-  // Toggle time picker only when clicking the icon
   const toggleTimePicker = (e) => {
     e.stopPropagation();
     setTimePickerOpen((prev) => !prev);
   };
 
-  // Custom input for TimePicker
   const CustomInput = forwardRef(({ value, onClick, className, style }, ref) => (
     <div
       className={className}
@@ -39,18 +36,17 @@ const CustomTimePicker = ({
         ...style
       }}
     >
-      {/* Editable input for keyboard navigation */}
+
       <input
         type="text"
         style={{ flex: '1 1 0%', color: '#374151', outline: 'none', backgroundColor: 'transparent' }}
         placeholder={placeholder}
         value={value}
         ref={ref}
-        onClick={(e) => e.stopPropagation()} // prevent click from toggling picker
-        readOnly // keep readOnly to avoid invalid manual text input
+        onClick={(e) => e.stopPropagation()} 
+        readOnly 
       />
 
-      {/* Clock icon for toggling */}
       <Clock
         style={{ height: '1.25rem', width: '1.25rem', color: '#9ca3af', cursor: 'pointer' }}
         onClick={toggleTimePicker}

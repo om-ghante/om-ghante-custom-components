@@ -1,4 +1,3 @@
-// components/others/CustomDatePicker.jsx
 import React, { useState, forwardRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -41,7 +40,7 @@ const CustomDatePicker = ({
       }}
       ref={ref}
     >
-      {/* Editable text input */}
+
       <input
         type="text"
         style={{ flex: '1 1 0%', color: '#374151', outline: 'none', backgroundColor: 'transparent' }}
@@ -49,12 +48,11 @@ const CustomDatePicker = ({
         value={value}
         onClick={(e) => {
           e.stopPropagation();
-          onClick(); // open/close via DatePicker internal logic
+          onClick(); 
         }}
-        onChange={handleChange} // allow typing
+        onChange={handleChange} 
       />
 
-      {/* Icon toggles manually */}
       <FaCalendarAlt style={{ height: '1.25rem', width: '1.25rem', color: '#9ca3af', cursor: 'pointer' }} onClick={toggleDatePicker} />
     </div>
   ));

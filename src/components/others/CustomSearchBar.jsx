@@ -6,7 +6,7 @@ const CustomSearchBar = ({
   onSearch,
   className = "",
   showIcon = true,
-  buttonType = "text", // 'text' or 'icon'
+  buttonType = "text", 
   style = {},
 }) => {
   const [query, setQuery] = useState("");

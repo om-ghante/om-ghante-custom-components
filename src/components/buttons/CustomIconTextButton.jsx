@@ -40,14 +40,14 @@ const CustomIconTextButton = ({
         borderRadius: '0.5rem',
         fontWeight: '500',
         transition: 'all 0.15s ease-in-out',
-        backgroundColor: '#2563eb', // Default primary color
-        color: '#ffffff', // Default text color
-        padding: '0.5rem 1rem', // Default md size padding
-        fontSize: '1rem', // Default md size font
+        backgroundColor: '#2563eb', 
+        color: '#ffffff', 
+        padding: '0.5rem 1rem', 
+        fontSize: '1rem', 
         width: fullWidth ? '100%' : 'fit-content',
         opacity: disabled || loading ? 0.5 : 1,
         cursor: disabled || loading ? 'not-allowed' : 'pointer',
-        border: 'none', // Remove default button border
+        border: 'none', 
         ...style
       }}
     >

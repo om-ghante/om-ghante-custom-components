@@ -1,4 +1,3 @@
-// src/components/inputs/CustomRadioButtons.jsx
 import React from "react";
 
 const CustomRadioButtons = ({
@@ -7,7 +6,7 @@ const CustomRadioButtons = ({
   selectedValue,
   onChange,
   label = "",
-  direction = "row", // row or column
+  direction = "row", 
   disabled = false,
   className = "",
   style = {},
@@ -65,8 +64,8 @@ const CustomRadioButtons = ({
                 border: '1px solid',
                 borderColor: selectedValue === option.value ? 'transparent' : '#d1d5db',
                 outline: 'none',
-                width: '1rem', // Default size (md)
-                height: '1rem', // Default size (md)
+                width: '1rem', 
+                height: '1rem', 
                 backgroundColor: selectedValue === option.value ? '#2563eb' : 'transparent',
                 position: 'relative',
                 display: 'inline-block',

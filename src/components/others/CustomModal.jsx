@@ -19,7 +19,6 @@ const CustomModal = ({ isOpen, onClose, title, children, footer, className = "",
         ...style
       }}
     >
-      {/* Overlay */}
       <div
         style={{
           position: 'absolute',
@@ -33,7 +32,6 @@ const CustomModal = ({ isOpen, onClose, title, children, footer, className = "",
         onClick={onClose}
       ></div>
 
-      {/* Modal */}
       <div
         style={{
           position: 'relative',
@@ -46,13 +44,13 @@ const CustomModal = ({ isOpen, onClose, title, children, footer, className = "",
           padding: '1.5rem'
         }}
       >
-        {/* Header */}
+
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            borderBottom: '1px solid #e5e7eb', // Using a light gray color
+            borderBottom: '1px solid #e5e7eb', 
             paddingBottom: '0.5rem'
           }}
         >
@@ -72,10 +70,8 @@ const CustomModal = ({ isOpen, onClose, title, children, footer, className = "",
           </button>
         </div>
 
-        {/* Body */}
         <div style={{ marginTop: '1rem' }}>{children}</div>
-
-        {/* Footer */}
+        
         {footer && (
           <div
             style={{

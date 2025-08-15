@@ -8,7 +8,7 @@ const CustomTextAreaInput = ({ label, value, onChange, placeholder, rows = 4, cl
         style={{
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
           appearance: 'none',
-          border: '1px solid #d1d5db', // Default border color
+          border: '1px solid #d1d5db', 
           borderRadius: '0.25rem',
           width: '100%',
           paddingTop: '0.5rem',

@@ -1,4 +1,3 @@
-// CustomDropDown.jsx
 import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 

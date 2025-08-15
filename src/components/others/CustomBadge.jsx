@@ -1,4 +1,3 @@
-// src/components/others/CustomBadge.jsx
 import React from "react";
 import PropTypes from "prop-types";
 

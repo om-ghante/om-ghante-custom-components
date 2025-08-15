@@ -1,4 +1,3 @@
-// src/components/inputs/CustomPasswordInput.jsx
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
@@ -46,7 +45,7 @@ const CustomPasswordInput = ({
           disabled={disabled}
           style={{
             paddingLeft: '0.75rem',
-            paddingRight: '2.5rem', // pr-10
+            paddingRight: '2.5rem', 
             paddingTop: '0.5rem',
             paddingBottom: '0.5rem',
             border: '1px solid',

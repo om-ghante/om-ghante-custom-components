@@ -1,10 +1,9 @@
-// src/components/inputs/CustomCheckBoxes.jsx
 import React, { useState } from 'react';
 
 const CustomCheckBoxes = ({
-  options = [], // Array of { label: 'Option 1', value: 'opt1' }
+  options = [], 
   onChange,
-  direction = 'vertical', // 'vertical' or 'horizontal'
+  direction = 'vertical', 
   disabled = false,
   className = '',
   style = {},
@@ -56,9 +55,6 @@ const CustomCheckBoxes = ({
               outline: 'none',
               backgroundColor: selectedValues.includes(option.value) ? '#2563eb' : 'transparent',
               cursor: 'pointer',
-              // For the checkmark, it's complex with inline styles.
-              // A common approach is to use a background image or a pseudo-element.
-              // For simplicity, I'll just change the background color.
             }}
             checked={selectedValues.includes(option.value)}
             onChange={() => handleCheckboxChange(option.value)}

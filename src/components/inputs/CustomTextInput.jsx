@@ -1,4 +1,3 @@
-// src/components/inputs/CustomTextInput.jsx
 import React, { useState } from 'react';
 
 const CustomTextInput = ({

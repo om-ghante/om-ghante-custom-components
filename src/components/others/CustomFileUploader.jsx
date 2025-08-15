@@ -5,11 +5,11 @@ const CustomFileUploader = ({
   label,
   onFileSelect,
   accept = "*",
-  maxSize = 5 * 1024 * 1024, // 5MB default
+  maxSize = 5 * 1024 * 1024, 
   showPreview = true,
   helperText,
   errorText,
-  buttonType = "text", // 'text' or 'icon'
+  buttonType = "text", 
   className = "",
   style = {},
 }) => {
@@ -134,7 +134,7 @@ const CustomFileUploader = ({
           style={{
             marginTop: '0.75rem',
             padding: '0.5rem',
-            border: '1px solid #e5e7eb', // Using a light gray color
+            border: '1px solid #e5e7eb', 
             borderRadius: '0.5rem',
             backgroundColor: '#f9fafb',
             boxShadow: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)'
